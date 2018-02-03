@@ -3,10 +3,10 @@ package org.camilloop.fitfull.model;
 import io.katharsis.resource.annotations.JsonApiId;
 import io.katharsis.resource.annotations.JsonApiResource;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @JsonApiResource(type = "product")
-@Document(indexName = "fitfull", type = "product", shards = 1, replicas = 0, refreshInterval = "-1")
+@Document
 public class Product {
 
     @Id

@@ -1,7 +1,7 @@
 package org.camilloop.fitfull.repository;
 
 import org.camilloop.fitfull.model.Product;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ProductRepository extends ElasticsearchRepository<Product, String> {
+public interface ProductRepository extends MongoRepository<Product, String> {
 }
