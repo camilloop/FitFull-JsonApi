@@ -1,6 +1,6 @@
 package org.camilloop.fitfull.katharsis;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import io.katharsis.queryspec.QuerySpec;
 import io.katharsis.repository.RelationshipRepositoryV2;
 import io.katharsis.resource.list.ResourceList;
@@ -10,7 +10,7 @@ import org.camilloop.fitfull.repository.MealRepository;
 import org.camilloop.fitfull.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.List;
+import java.util.Set;
 
 @Component
 public class MealToProductRalationshipRepository implements RelationshipRepositoryV2<Meal, String, Product, String> {
@@ -43,23 +43,23 @@ public class MealToProductRalationshipRepository implements RelationshipReposito
     @Override
     public void setRelations(Meal meal, Iterable<String> iterable, String s) {
         Iterable<Product> products = productRepository.findAllById(iterable);
-        meal.setProducts(Lists.newArrayList(products));
+        meal.setProducts(Sets.newHashSet(products));
         mealRepository.save(meal);
     }
 
     @Override
     public void addRelations(Meal meal, Iterable<String> iterable, String s) {
-        List<Product> products = meal.getProducts();
+        Set<Product> products = meal.getProducts();
         Iterable<Product> newProducts = productRepository.findAllById(iterable);
-        products.addAll(Lists.newArrayList(newProducts));
+        products.addAll(Sets.newHashSet(newProducts));
         meal.setProducts(products);
         mealRepository.save(meal);
     }
 
     @Override
     public void removeRelations(Meal meal, Iterable<String> iterable, String s) {
-        List<Product> products = meal.getProducts();
-        products.removeAll(Lists.newArrayList(productRepository.findAllById(iterable)));
+        Set<Product> products = meal.getProducts();
+        products.removeAll(Sets.newHashSet(productRepository.findAllById(iterable)));
         meal.setProducts(products);
         mealRepository.save(meal);
     }

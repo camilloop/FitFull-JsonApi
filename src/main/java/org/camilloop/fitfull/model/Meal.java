@@ -3,8 +3,8 @@ package org.camilloop.fitfull.model;
 import io.katharsis.resource.annotations.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.List;
+import org.springframework.data.mongodb.core.mapping.Document;;
+import java.util.Set;
 
 @JsonApiResource(type = "meal")
 @Document
@@ -18,7 +18,7 @@ public class Meal {
 
     @DBRef
     @JsonApiRelation(opposite = "meal")
-    private List<Product> products;
+    private Set<Product> products;
 
     public Meal() {
     }
@@ -43,11 +43,11 @@ public class Meal {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 

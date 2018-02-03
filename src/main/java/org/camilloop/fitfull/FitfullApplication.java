@@ -1,5 +1,6 @@
 package org.camilloop.fitfull;
 
+import com.google.common.collect.Sets;
 import io.katharsis.spring.boot.v3.KatharsisConfigV3;
 import org.camilloop.fitfull.model.Meal;
 import org.camilloop.fitfull.model.Product;
@@ -27,7 +28,7 @@ public class FitfullApplication {
 		MealRepository bean1 = run.getBean(MealRepository.class);
 		bean1.deleteAll();
 		Meal bananowiec = bean1.save(new Meal("Bananowiec"));
-		bananowiec.setProducts(Arrays.asList(banan, maka));
+		bananowiec.setProducts(Sets.newHashSet(banan, maka));
 		bean1.save(bananowiec);
 	}
 }
